@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Converter decimal para binário</title>
+	<meta charset="utf-8">
+	<script>
+		function limparCampo(id){
+			document.getElementById(id).value = ""
+		}
+		function converter(){
+			let valor = document.getElementById('text').value
+			let bin = valor
+			let dec = 0
+			let valorAnterior
+			let mensagem = document.getElementById("message")
+			let string = ""
+			for (let i = 0; i < bin.length; i++){
+				valorAnterior = dec
+				dec += Math.pow(2, i) * bin[bin.length - i - 1];
+				string = string + '2^'+i+'*'+bin[bin.length - i - 1]+' + valor atual(' +valorAnterior+') = ' + dec + '<br>';
+				valorAnterior = dec
+			} 
+			mensagem.innerHTML = string;
+			document.getElementById('text2').value = dec
+		}
+
+	</script>
+</head>
+<body>
+	<h1>Conversor binário para decimal</h1>
+	<input type="text" name="text" id="text" value="Digite o número binário" onclick="limparCampo('text')">
+	<input type="text" name="text2" id="text2" readonly="true">
+	<button onclick="converter()">Converter</button>
+	<p id="message"></p>
+</body>
+</html>
